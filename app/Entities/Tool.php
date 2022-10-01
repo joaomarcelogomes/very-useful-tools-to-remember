@@ -10,105 +10,114 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tool extends AbstractEntity
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private int $id;
+  /**
+   * @ORM\Id
+   * @ORM\GeneratedValue
+   * @ORM\Column(type="integer")
+   */
+  private int $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $title;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private string $title;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $link;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private string $link;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $description;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private string $description;
 
-    public function __construct(string $title, string $link, string $description) {
-        $this->title = $title;
-        $this->link = $link;
-        $this->description = $description;
-    }
+  public function __construct(string $title, string $link, string $description)
+  {
+    $this->title = $title;
+    $this->link = $link;
+    $this->description = $description;
+  }
 
-    /**
-     * @return int
-     */
-    public function getId(): int {
-        return $this->id;
-    }
+  /**
+   * @return int
+   */
+  public function getId(): int
+  {
+    return $this->id;
+  }
 
-    /**
-     * @param int $id
-     * @return Tool
-     */
-    public function setId(int $id): Tool {
-        $this->id = $id;
-        return $this;
-    }
+  /**
+   * @param int $id
+   * @return Tool
+   */
+  public function setId(int $id): Tool
+  {
+    $this->id = $id;
+    return $this;
+  }
 
-    /**
-     * @return string
-     */
-    public function getTitle(): string {
-        return $this->title;
-    }
+  /**
+   * @return string
+   */
+  public function getTitle(): string
+  {
+    return $this->title;
+  }
 
-    /**
-     * @param string $title
-     * @return Tool
-     */
-    public function setTitle(string $title): Tool {
-        $this->title = $title;
-        return $this;
-    }
+  /**
+   * @param string $title
+   * @return Tool
+   */
+  public function setTitle(string $title): Tool
+  {
+    $this->title = $title;
+    return $this;
+  }
 
-    /**
-     * @return string
-     */
-    public function getLink(): string {
-        return $this->link;
-    }
+  /**
+   * @return string
+   */
+  public function getLink(): string
+  {
+    return $this->link;
+  }
 
-    /**
-     * @param string $link
-     * @return Tool
-     */
-    public function setLink(string $link): Tool {
-        $this->link = $link;
-        return $this;
-    }
+  /**
+   * @param string $link
+   * @return Tool
+   */
+  public function setLink(string $link): Tool
+  {
+    $this->link = $link;
+    return $this;
+  }
 
-    /**
-     * @return string
-     */
-    public function getDescription(): string {
-        return $this->description;
-    }
+  /**
+   * @return string
+   */
+  public function getDescription(): string
+  {
+    return $this->description;
+  }
 
-    /**
-     * @param string $description
-     * @return Tool
-     */
-    public function setDescription(string $description): Tool {
-        $this->description = $description;
-        return $this;
-    }
+  /**
+   * @param string $description
+   * @return Tool
+   */
+  public function setDescription(string $description): Tool
+  {
+    $this->description = $description;
+    return $this;
+  }
 
-    public function jsonSerialize(): array
-    {
-        return [
-           'id'          => $this->id,
-           'title'       => $this->title,
-           'link'        => $this->link,
-           'description' => $this->description
-        ];
-    }
+  public function jsonSerialize(): array
+  {
+    return [
+     'id'          => $this->id,
+     'title'       => $this->title,
+     'link'        => $this->link,
+     'description' => $this->description
+    ];
+  }
 }
