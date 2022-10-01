@@ -26,7 +26,7 @@ class ToolController extends Controller
   }
 
   public function store(Request $request)
-    {
+  {
     $body = json_decode($request->getContent(), true);
 
     $tool = $this->factory->new($body);
