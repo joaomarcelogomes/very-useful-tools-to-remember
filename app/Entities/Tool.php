@@ -32,13 +32,6 @@ class Tool extends AbstractEntity
    */
   private string $description;
 
-  public function __construct(string $title, string $link, string $description)
-  {
-    $this->title = $title;
-    $this->link = $link;
-    $this->description = $description;
-  }
-
   /**
    * @return int
    */

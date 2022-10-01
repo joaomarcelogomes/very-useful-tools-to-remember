@@ -5,59 +5,58 @@ namespace App\Http\Controllers;
 
 use App\Entities\Tool;
 use Illuminate\Http\Request;
+use App\Factories\ToolFactory;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ToolController extends Controller
 {
-    public function __construct(
-        private EntityManagerInterface $entityManager
-    ) {}
+  public function __construct(
+    private EntityManagerInterface $entityManager,
+    private ToolFactory $factory
+  ) {}
 
-    public function index()
+  public function index()
+  {
+    return $this->entityManager->getRepository(Tool::class)->findAll();
+  }
+
+  public function show(int $id)
+  {
+    return $this->entityManager->getRepository(Tool::class)->find($id);
+  }
+
+  public function store(Request $request)
     {
-      return $this->entityManager->getRepository(Tool::class)->findAll();
-    }
+    $body = json_decode($request->getContent(), true);
 
-    public function show(int $id)
-    {
-      return $this->entityManager->getRepository(Tool::class)->find($id);
-    }
+    $tool = $this->factory->new($body);
+    $this->entityManager->persist($tool);
+    $this->entityManager->flush();
 
-    public function store(Request $request)
-    {
-      $body = json_decode($request->getContent(), true);
+    return [
+      'id' => $tool->getId()
+    ];
+  }
 
-      $tool = new Tool($body['title'], $body['link'], $body['description']);
-      $this->entityManager->persist($tool);
-      $this->entityManager->flush();
+  public function update(int $id, Request $request)
+  {
+    $newData = json_decode($request->getContent(), true);
+    $tool = $this->entityManager->getRepository(Tool::class)->find($id);
 
-      return [
-          'id' => $tool->getId()
-      ];
-    }
+    $this->factory->update($tool, $newData);
+    $this->entityManager->flush();
 
-    public function update(int $id, Request $request)
-    {
-      $newData = json_decode($request->getContent(), true);
-      $tool = $this->entityManager->getRepository(Tool::class)->find($id);
+    return $tool;
+  }
 
-      $tool->setTitle($newData['title']);
-      $tool->setLink($newData['link']);
-      $tool->setDescription($newData['description']);
+  public function destroy(int $id)
+  {
+    $tool = $this->entityManager->getRepository(Tool::class)->find($id);
+    $this->entityManager->remove($tool);
+    $this->entityManager->flush();
 
-      $this->entityManager->flush();
-
-      return $tool;
-    }
-
-    public function destroy(int $id)
-    {
-      $tool = $this->entityManager->getRepository(Tool::class)->find($id);
-      $this->entityManager->remove($tool);
-      $this->entityManager->flush();
-
-      return [
-          $id => 'deleted'
-      ];
-    }
+    return [
+      $id => 'deleted'
+    ];
+  }
 }
