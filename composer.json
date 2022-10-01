@@ -1,7 +1,7 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "joaomarcelogomes/vuttr",
+    "description": "Very useful tools to remember",
+    "keywords": ["tools", "development"],
     "license": "MIT",
     "type": "project",
     "require": {
