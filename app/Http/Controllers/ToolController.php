@@ -3,24 +3,31 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Http\Response;
+use App\Entities\Tool;
+use App\Parsers\ToolParser;
+use Illuminate\Http\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ToolController extends Controller
 {
+    public function __construct(
+        private ToolParser $parser,
+        private EntityManagerInterface $entityManager
+    ) {}
+
     public function index()
     {
-        return [
-            "id" => 1,
-            "title" => "Notion",
-            "link" => "https://.notion.so",
-            "description" => "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized. ",
-            "tags" => [
-                "organization",
-                "planning",
-                "collaboration",
-                "writing",
-                "calendar"
-            ]
-        ];
+        $tools = $this->entityManager->getRepository(Tool::class)->findAll();
+        return $this->parser->parseAll($tools);
+    }
+
+    public function store(Request $request)
+    {
+        $body = json_decode($request->getContent(), true);
+        $tool = new Tool($body['title'], $body['link'], $body['description']);
+        $this->entityManager->persist($tool);
+        $this->entityManager->flush();
+
+        return 'Tool has been inserted!';
     }
 }

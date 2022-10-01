@@ -17,4 +17,5 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/teste', ['uses' => 'ToolController@index']);
+$router->get('/tools', ['uses' => 'ToolController@index']);
+$router->post('/tools/store', ['uses' => 'ToolController@store']);
