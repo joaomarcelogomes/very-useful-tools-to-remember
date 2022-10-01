@@ -2,7 +2,7 @@
 
 Very useful tools to remember  é uma api para cadastro, atualização, deleção e recuperação de ferramentas úteis
 de desenvolvimento. Esta api tem como intuito o estudo do desenvolvimento de Api's rest com Lumen. 
-A ideia de desenvolvimento desta Api é oriúnda de um [teste técnico da BossaBox](https://www.notion.so/Back-end-0b2c45f1a00e4a849eefe3b1d57f23c6)
+A ideia de desenvolvimento desta Api é oriúnda de um [teste técnico da BossaBox](https://www.notion.so/Back-end-0b2c45f1a00e4a849eefe3b1d57f23c6).
 Sinta-se livre para abrir uma issue/pr com críticas, desde que construtivas.
 
 ### Instruções para utilização.
