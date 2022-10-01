@@ -14,8 +14,8 @@ Clone este repositório:
   git clone git@github.com:joaomarcelogomes/very-useful-tools-to-remember.git
 ```
 
-Entrar no diretório clonado, inserir os dados do seu db de acordo com o arquivo .env.example 
-e iniciar o servidor embutido do PHP na porta desejada.
+Entre no diretório clonado, crie um arquivo .env de acordo com o arquivo .env.example
+e inicie o servidor embutido do PHP na porta desejada.
 
 ```
   cd very-useful-tools-to-remember
