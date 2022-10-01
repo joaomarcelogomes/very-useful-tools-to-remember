@@ -7,15 +7,18 @@ Sinta-se livre para abrir uma issue/pr com críticas, desde que construtivas.
 
 ### Instruções para utilização.
 
-Caso deseje testar a API, basta clonar este repositório:
+Caso deseje testar a API, será necessária a utilização de um banco de dados mysql.
+Clone este repositório:
 
 ```
   git clone git@github.com:joaomarcelogomes/very-useful-tools-to-remember.git
 ```
 
-Entrar no diretório e iniciar o servidor embutido do PHP.
+Entrar no diretório clonado, inserir os dados do seu db de acordo com o arquivo .env.example 
+e iniciar o servidor embutido do PHP na porta desejada.
 
 ```
   cd very-useful-tools-to-remember
+
   php -S localhost:3000 -t public/
 ```
