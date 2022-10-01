@@ -21,6 +21,12 @@ class ToolController extends Controller
         return $this->parser->parseAll($tools);
     }
 
+    public function show(int $id)
+    {
+        $tool = $this->entityManager->getRepository(Tool::class)->find($id);
+        return $this->parser->parse($tool);
+    }
+
     public function store(Request $request)
     {
         $body = json_decode($request->getContent(), true);
@@ -28,6 +34,34 @@ class ToolController extends Controller
         $this->entityManager->persist($tool);
         $this->entityManager->flush();
 
-        return 'Tool has been inserted!';
+        return [
+            'id' => $tool->getId()
+        ];
+    }
+
+    public function update(int $id, Request $request)
+    {
+        $newData = json_decode($request->getContent(), true);
+
+        $tool = $this->entityManager->getRepository(Tool::class)->find($id);
+
+        $tool->setTitle($newData['title']);
+        $tool->setLink($newData['link']);
+        $tool->setDescription($newData['description']);
+
+        $this->entityManager->flush();
+
+        return $this->parser->parse($tool);
+    }
+
+    public function destroy(int $id)
+    {
+        $tool = $this->entityManager->getRepository(Tool::class)->find($id);
+        $this->entityManager->remove($tool);
+        $this->entityManager->flush();
+
+        return [
+            $id => 'deleted'
+        ];
     }
 }

@@ -13,9 +13,8 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
 $router->get('/tools', ['uses' => 'ToolController@index']);
+$router->get('/tools/{id}', ['uses' => 'ToolController@show']);
+$router->put('/tools/{id}', ['uses' => 'ToolController@update']);
 $router->post('/tools/store', ['uses' => 'ToolController@store']);
+$router->delete('/tools/{id}', ['uses' => 'ToolController@destroy']);
