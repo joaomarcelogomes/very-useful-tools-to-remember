@@ -4,27 +4,23 @@ namespace App\Http\Controllers;
 
 
 use App\Entities\Tool;
-use App\Parsers\ToolParser;
 use Illuminate\Http\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ToolController extends Controller
 {
     public function __construct(
-        private ToolParser $parser,
         private EntityManagerInterface $entityManager
     ) {}
 
     public function index()
     {
-        $tools = $this->entityManager->getRepository(Tool::class)->findAll();
-        return $this->parser->parseAll($tools);
+        return $this->entityManager->getRepository(Tool::class)->findAll();
     }
 
     public function show(int $id)
     {
-        $tool = $this->entityManager->getRepository(Tool::class)->find($id);
-        return $this->parser->parse($tool);
+        return $this->entityManager->getRepository(Tool::class)->find($id);
     }
 
     public function store(Request $request)
@@ -51,7 +47,7 @@ class ToolController extends Controller
 
         $this->entityManager->flush();
 
-        return $this->parser->parse($tool);
+        return $tool;
     }
 
     public function destroy(int $id)

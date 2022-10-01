@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="tools")
  */
-class Tool
+class Tool extends AbstractEntity
 {
     /**
      * @ORM\Id
@@ -100,5 +100,15 @@ class Tool
     public function setDescription(string $description): Tool {
         $this->description = $description;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+           'id'          => $this->id,
+           'title'       => $this->title,
+           'link'        => $this->link,
+           'description' => $this->description
+        ];
     }
 }
